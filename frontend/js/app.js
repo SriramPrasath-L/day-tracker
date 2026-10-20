@@ -1,10 +1,12 @@
 // Starts the app: shows login if needed, otherwise loads your data and shows the tabs.
 import * as auth from './auth.js';
 import { $, esc, acts, applyTheme } from './ui.js';
-import { S, load, onStatus, flush } from './store.js';
+import { api } from './api.js';
+import { S, ME, load, onStatus, flush } from './store.js';
 import { renderToday } from './today.js';
 import { renderExercises } from './exercises.js';
 import { renderProgress } from './progress.js';
+import { renderAdmin } from './admin.js';
 import { showAuth } from './auth-screens.js';
 
 let tab = 'today';
@@ -20,6 +22,7 @@ function show() {
   document.querySelectorAll('nav button[data-t]').forEach((b) => b.classList.toggle('on', b.dataset.t === tab));
   if (tab === 'today') renderToday();
   else if (tab === 'ex') renderExercises();
+  else if (tab === 'admin') renderAdmin();
   else renderProgress();
 }
 acts.tab = ({ t }) => { tab = t; show(); };
@@ -28,9 +31,14 @@ acts.out = () => { auth.signOut(); location.reload(); };
 async function startApp() {
   shell();
   onStatus(() => { const e = $('#sync'); if (e) e.textContent = STATUS[S.status] || ''; });
-  try { await load(); } catch (e) {
+  try { Object.assign(ME, await api('/me')); await load(); } catch (e) {
     $('#view').innerHTML = `<section class="sum"><p>Could not load your data: ${esc(e.message)}</p><button data-act="out">Sign out</button></section>`;
     return;
+  }
+  if (ME.role === 'admin') {
+    const b = document.createElement('button');
+    b.dataset.act = 'tab'; b.dataset.t = 'admin'; b.textContent = 'Admin';
+    document.querySelector('nav').insertBefore(b, document.querySelector('nav [data-act="theme"]'));
   }
   show();
 }
@@ -38,3 +46,7 @@ async function startApp() {
 document.addEventListener('visibilitychange', () => { if (document.hidden) flush(); });
 applyTheme();
 if (auth.session()) startApp(); else showAuth(startApp);
+
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}

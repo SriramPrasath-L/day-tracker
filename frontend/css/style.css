@@ -78,3 +78,6 @@ nav button{flex:1;border:0;background:none;font-weight:600;color:var(--mut)}nav 
 table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:6px 4px;border-top:1px solid var(--line)}
 .hb{display:grid;grid-template-columns:1fr 1fr 40px;gap:8px;align-items:center;font-size:14px}.hb em{font-style:normal;color:var(--mut);text-align:right}
 h3{font-size:16px;margin:0 0 8px}
+
+/* ---- admin (Part 3) ---- */
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}

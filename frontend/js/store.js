@@ -58,3 +58,6 @@ export async function flush() {
     timer = setTimeout(flush, 5000);
   }
 }
+
+// Who is signed in (filled from the backend after login).
+export const ME = { role: 'user', sub: '', email: '' };
