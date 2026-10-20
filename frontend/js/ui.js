@@ -15,6 +15,11 @@ document.addEventListener('change', (e) => {
   if (n && acts[n]) acts[n](e.target.value, e.target);
 });
 
+document.addEventListener('input', (e) => {
+  const n = e.target.dataset && e.target.dataset.input;
+  if (n && acts[n]) acts[n](e.target.value, e.target);
+});
+
 export function modal(html) {
   let ov = $('#ov');
   if (!ov) {

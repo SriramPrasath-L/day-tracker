@@ -51,3 +51,30 @@ nav button{flex:1;border:0;background:none;font-weight:600;color:var(--mut)}nav 
 #sh{background:var(--card);width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));max-height:90%;overflow:auto}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row{display:flex;gap:8px;justify-content:flex-end}
 #toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:20px;font-size:14px;display:none;z-index:6}
+
+/* ---- gym, exercises, progress (Part 2b) ---- */
+.tl li{flex-wrap:wrap}
+.gx{flex-basis:100%;width:100%}
+#view .gt{text-align:left;color:var(--acc)}
+.gcs{display:flex;flex-wrap:wrap;gap:6px}
+#view .gc{border-radius:20px;padding:5px 12px;font-size:14px}
+#view .gc.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.gcs label{display:inline-flex;align-items:center;margin:0 6px 6px 0;color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:5px 10px;font-size:14px}
+.gcs label input{display:inline-block;width:auto;margin:0 6px 0 0}
+.ck.on{background:var(--ok);border-color:var(--ok);color:#fff}
+#view .ck.sm{width:28px;height:28px}
+.ex{border-top:1px solid var(--line);padding:10px 0}
+.eh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#view .x{margin-left:auto;font-size:13px;padding:4px 8px;color:var(--mut)}
+.set{display:grid;grid-template-columns:44px 64px auto 70px auto 32px;gap:6px;align-items:center;margin-top:6px;font-size:14px;color:var(--mut)}
+.set input{margin:0;padding:6px;text-align:center;color:var(--ink)}
+.en{margin-top:8px;font-size:14px}
+.adx{display:grid;grid-template-columns:1fr 1.4fr auto;gap:8px;margin-top:10px}
+.adx.v{grid-template-columns:1fr auto}
+.adx select,.adx input{margin-top:0}
+.ln{display:flex;align-items:center;padding:6px 0;border-top:1px solid var(--line)}
+.stat{display:flex;gap:16px;margin:6px 0 10px}.stat b{font-size:22px;display:block}
+.chart{width:100%;height:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:6px 4px;border-top:1px solid var(--line)}
+.hb{display:grid;grid-template-columns:1fr 1fr 40px;gap:8px;align-items:center;font-size:14px}.hb em{font-style:normal;color:var(--mut);text-align:right}
+h3{font-size:16px;margin:0 0 8px}

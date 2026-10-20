@@ -3,6 +3,8 @@ import * as auth from './auth.js';
 import { $, esc, acts, applyTheme } from './ui.js';
 import { S, load, onStatus, flush } from './store.js';
 import { renderToday } from './today.js';
+import { renderExercises } from './exercises.js';
+import { renderProgress } from './progress.js';
 import { showAuth } from './auth-screens.js';
 
 let tab = 'today';
@@ -17,7 +19,8 @@ function shell() {
 function show() {
   document.querySelectorAll('nav button[data-t]').forEach((b) => b.classList.toggle('on', b.dataset.t === tab));
   if (tab === 'today') renderToday();
-  else $('#view').innerHTML = `<section class="sum"><h2>${tab === 'ex' ? 'Exercises' : 'Progress'}</h2><p class="mut">This screen arrives in Part 2b.</p></section>`;
+  else if (tab === 'ex') renderExercises();
+  else renderProgress();
 }
 acts.tab = ({ t }) => { tab = t; show(); };
 acts.out = () => { auth.signOut(); location.reload(); };
